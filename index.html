@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dina - Game Developer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Contact: a little note in the corner, on every page -->
+  <aside class="contact pixel-box">
+    <a href="mailto:dinarazak66@gmail.com"><span class="icon" data-sprite="mail"></span>Email</a>
+    <a href="https://linkedin.com/in/dinaashreen-abdul-razak-a42393277" target="_blank" rel="noopener"><span class="icon" data-sprite="linked"></span>LinkedIn</a>
+    <a href="https://github.com/Dina-Razak00" target="_blank" rel="noopener"><span class="icon" data-sprite="github"></span>GitHub</a>
+    <a href="https://wa.me/60173505895" target="_blank" rel="noopener"><span class="icon" data-sprite="whatsapp"></span>WhatsApp</a>
+    <a href="resume.pdf" target="_blank"><span class="icon" data-sprite="paper"></span>Resume</a>
+  </aside>
+
+  <header class="hello">
+    <div class="bubble pixel-box">
+      <h1>Hi, I'm Dina!</h1>
+      <span class="tail"></span>
+    </div>
+    <p class="tagline">Aspiring Game Developer &nbsp;&middot;&nbsp; Storyteller &nbsp;&middot;&nbsp; World Builder</p>
+  </header>
+
+  <!-- The console-style menu: three bubbles with L and R on the sides -->
+  <nav class="menu">
+    <span class="cat angel" data-sprite="angel" title="Angel"></span>
+    <span class="cat billie" data-sprite="billie" title="Billie"></span>
+    <button class="shoulder left" data-step="-1" aria-label="Previous page">L</button>
+    <div class="bubbles">
+      <button class="tab" data-page="about" title="About Me"><span class="face"><img src="img/dina_face.png" alt=""></span></button>
+      <button class="tab" data-page="games" title="My Games"><span data-sprite="pad"></span></button>
+      <button class="tab" data-page="skills" title="Skills"><span data-sprite="sword"></span></button>
+    </div>
+    <button class="shoulder right" data-step="1" aria-label="Next page">R</button>
+  </nav>
+  <p class="page-name"></p>
+
+  <main>
+    <section id="about" class="page pixel-box">
+      <h2>About Me</h2>
+
+      <div class="me">
+        <img class="avatar" src="img/dina.png" alt="Pixel art of Dina in her pink room with her cats Billie and Angel">
+        <div class="story">
+          <p>Hey! I’m Dina, a game developer from Malaysia who loves cute things, cats, and pixel art; which
+            makes it slightly ironic that my first full game turned out to be a psychological horror story.</p>
+          <p>I created <b>Hey Jane!</b> from the ground up, writing every line, directing its art, and testing
+            each chapter until it was ready to publish. Working on the game showed me just how much I enjoy
+            creating worlds, stories, and experiences that people can step into.</p>
+          <p>Before getting into game development, I worked in customer service and trained as a medical lab
+            technician. Those experiences taught me patience, attention to detail, and the importance of
+            understanding and listening to people.</p>
+          <p class="looking">Now, I’m looking for my first opportunity in the games industry; whether that’s an
+            internship or junior role, where I can continue learning, grow my skills, and help create games
+            that people enjoy.</p>
+        </div>
+      </div>
+
+      <div class="career">
+        <h3>Why I Changed Career Paths</h3>
+        <p>For the past few years, I found myself working towards a career that I knew, deep down, wasn't making
+          me happy. Eventually, I realised that I didn't want to keep putting off something I had always wanted to
+          pursue. I wanted to build a career around something I genuinely cared about.</p>
+        <p>I've wanted to become a game developer since I was 16. For a long time, though, I convinced myself that
+          programming wasn't for me. I thought being a programmer meant being naturally good at mathematics, which
+          was never my strongest subject, so I put that dream aside and chose a different path.</p>
+        <p>As I've grown older, I've become more willing to challenge the assumptions that once held me back. With
+          so many resources, courses, communities, and tools available online today, I realised I didn't need to
+          have everything figured out before I started. I just needed to start learning.</p>
+        <p>My interest in games began through watching YouTubers and streamers play them and seeing how strongly
+          people connected with the experiences they played. I became fascinated by the idea that something created
+          by one person or a small team could bring people together, make them feel something, and become part of
+          their lives.</p>
+        <p class="big-line">That's what I want to create.</p>
+        <p>I'm still at the beginning of my journey, but I'm excited to keep learning, experimenting, and building
+          towards the career I've wanted since I was 16.</p>
+      </div>
+
+      <h3 class="cats-title">Meet my cats</h3>
+      <div class="cats">
+        <figure class="cat-card">
+          <img src="img/billie.jpg" alt="Billie, a light silver tabby, lying on the floor hugging a toy fish">
+          <figcaption><span class="mini" data-sprite="billie"></span><b>Billie</b> the silver one. Professional fish hunter.</figcaption>
+        </figure>
+        <figure class="cat-card">
+          <img src="img/angel.jpg" alt="Angel, a brown tabby, stretched out on a grey couch">
+          <figcaption><span class="mini" data-sprite="angel"></span><b>Angel</b> the brown tabby. Supervises everything from the couch.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="games" class="page pixel-box">
+      <h2>My Games <span class="heart" data-sprite="heart"></span></h2>
+
+      <article class="game">
+        <div class="shot-wrap">
+          <img class="shot" src="img/heyjane.png" alt="Hey Jane! title screen: a computer desk at night">
+          <span class="nymeria" data-sprite="nymeria" title="Nymeria, the cat from Hey Jane!"></span>
+        </div>
+        <div class="info">
+          <h3>Hey Jane!</h3>
+          <ul class="tags">
+            <li>Unity 6</li><li>Psychological horror</li><li>7 chapters</li><li>Story &amp; art</li>
+          </ul>
+          <p>A psychological horror game set inside a 2003 desktop computer. Read Jane's chats, emails and
+            journal over seven chapters... and slowly realise someone is watching her.</p>
+          <p class="role"><b>My role:</b> game design, the whole story and dialogue, art direction, testing.</p>
+          <div class="buttons">
+            <a class="btn play" href="https://play.unity.com/en/games/26f2dbdd-0545-4bc7-b43a-03a3aa4c2563/hey-jane" target="_blank" rel="noopener">&#9654; Play it</a>
+            <a class="btn more" href="#">How I made it</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="game">
+        <img class="shot pixel" src="img/cloudnine.jpg" alt="Pixel art clouds on a bright blue sky">
+        <div class="info">
+          <h3>Project Cloud Nine</h3>
+          <ul class="tags">
+            <li>Unity</li><li>2D &amp; 3D</li><li>My first game</li>
+          </ul>
+          <p>My first Unity project: 2D and 3D scenes to explore, things to interact with, and my own
+            day/night lighting script.</p>
+          <div class="buttons">
+            <a class="btn play" href="https://play.unity.com/en/games/17d52140-fad4-40cf-8eef-43e1c3bfe3f6/project-cloud-nine" target="_blank" rel="noopener">&#9654; Play it</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="skills" class="page pixel-box">
+      <h2>Skills</h2>
+      <p class="intro">Everything I bring to a game team. Hover or tap an item to take a look!</p>
+
+      <!-- RPG inventory: script.js fills the slots from the skills list -->
+      <div class="inventory">
+        <span class="inv-label">Inventory</span>
+        <div class="inv-grid"></div>
+        <div class="inv-info">
+          <span class="inv-icon"></span>
+          <div>
+            <h3 class="inv-name"></h3>
+            <p class="inv-desc"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>made with love (and cats) by Dina</footer>
+
+  <!-- "How I made it": a little 2003-style window, like Jane's computer -->
+  <div class="devlog">
+    <div class="window">
+      <div class="titlebar">
+        <span class="title-icon" data-sprite="paper"></span>
+        <span>how_i_made_it.txt</span>
+        <button class="win-close" title="Close">X</button>
+      </div>
+      <div class="win-body">
+        <h2>How I made Hey Jane!</h2>
+
+        <section class="step">
+          <img class="zoom" src="img/made/camera.jpg" alt="Security-camera shot of Jane at her desk at night">
+          <div>
+            <h3>1. The idea</h3>
+            <p>The idea behind my first game, <b>Hey Jane!</b>, came from a long-time dream of creating a
+              horror/psychological experience. Inspired by creators like Chilla's Art and Kyle Seeley, the developer
+              behind <i>Emily is Away</i>, I wanted to bring together the unsettling atmosphere of psychological horror
+              with the emotional depth of interactive storytelling. And just like that, <b>Hey Jane!</b> was born.</p>
+          </div>
+        </section>
+
+        <section class="step">
+          <img class="zoom" src="img/made/jane.jpg" alt="Illustration of Jane hugging her grey cat Nymeria">
+          <div>
+            <h3>2. Writing the story</h3>
+            <p>I wrote all seven chapters and every line of dialogue. The whole story is told through Jane's
+              computer: her chats, emails, journal and photos, so players piece together what's happening
+              themselves.</p>
+          </div>
+        </section>
+
+        <section class="step wide">
+          <h3>3. The art</h3>
+          <p>I created or art-directed all the pictures in the game: Jane's photos, journal doodles, creepy camera
+            shots, and a short in-game video.</p>
+          <div class="gallery">
+            <img class="zoom" src="img/made/hill.jpg" alt="Jane sitting on a hill in a yellow raincoat">
+            <img class="zoom" src="img/made/nymeria.jpg" alt="Jane holding her nose next to Nymeria in the litter box">
+            <img class="zoom" src="img/made/doodle.jpg" alt="Ladybug and flower doodle from Jane's journal">
+            <img class="zoom" src="img/made/video1.jpg" alt="Frame from the in-game video: a dark stairwell">
+            <img class="zoom" src="img/made/video2.jpg" alt="Frame from the in-game video: a camcorder recording a door">
+          </div>
+        </section>
+
+        <section class="step wide">
+          <h3>4. Building it in Unity</h3>
+          <p>Hey Jane! takes place on a working 2003 desktop made in Unity 6, with a messenger, email, journal, web
+            browser, photos and files. I designed how every app works and feels, planned each feature in detail, and
+            tested every change in Unity until it played the way I imagined.</p>
+          <div class="apps">
+            <figure><img src="img/made/app_messenger.png" alt=""><figcaption>Messenger</figcaption></figure>
+            <figure><img src="img/made/app_email.png" alt=""><figcaption>Email</figcaption></figure>
+            <figure><img src="img/made/app_journal.png" alt=""><figcaption>Journal</figcaption></figure>
+            <figure><img src="img/made/app_web.png" alt=""><figcaption>Web</figcaption></figure>
+            <figure><img src="img/made/app_photos.png" alt=""><figcaption>Photos</figcaption></figure>
+            <figure><img src="img/made/app_folder.png" alt=""><figcaption>Files</figcaption></figure>
+          </div>
+        </section>
+
+        <section class="step wide">
+          <h3>5. Testing</h3>
+          <p>I played every chapter over and over, writing bug reports with steps to repeat them, and re-tested
+            every fix before each release. A few of the bugs I caught:</p>
+          <ul class="bugs">
+            <li>Typing in a chat set off other buttons on the screen</li>
+            <li>Videos showing up completely black</li>
+            <li>Notifications stacking on top of each other</li>
+            <li>Keys that stopped responding</li>
+          </ul>
+          <p>Player feedback shaped it too: a tester lost their progress by closing the game mid-chapter, so I
+            added auto-saving, with a little walking ladybug while it saves.</p>
+        </section>
+
+        <section class="step">
+          <img class="icon-pic" src="img/made/ladybug.png" alt="The Hey Jane! ladybug game icon">
+          <div>
+            <h3>6. Publishing</h3>
+            <p>Hey Jane! is out on Unity Play, with a Windows version too. Because it deals with dark themes, I added
+              a content warning and support helplines for Malaysia, the US and internationally.</p>
+            <div class="buttons">
+              <a class="btn play" href="https://play.unity.com/en/games/26f2dbdd-0545-4bc7-b43a-03a3aa4c2563/hey-jane" target="_blank" rel="noopener">&#9654; Play it</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo viewer: opens when a cat photo is clicked -->
+  <div class="viewer">
+    <figure class="pixel-box">
+      <button class="close" title="Close">X</button>
+      <img src="" alt="">
+      <figcaption></figcaption>
+    </figure>
+  </div>
+
+  <!-- Music player: a little pixel Spotify in the corner -->
+  <div class="player pixel-box">
+    <div class="song">
+      <b class="song-name">Sunrise</b>
+      <small>lofi beats</small>
+    </div>
+    <button class="pbtn fold" title="Make the player small"><span data-icon="fold"></span></button>
+    <div class="controls">
+      <div class="control-row">
+        <button class="pbtn shuffle" title="Shuffle"><span data-icon="shuffle"></span></button>
+        <button class="pbtn prev" title="Previous"><span data-icon="prev"></span></button>
+        <button class="pbtn play" title="Play"><span data-icon="play"></span></button>
+        <button class="pbtn next" title="Next"><span data-icon="next"></span></button>
+        <button class="pbtn repeat" title="Repeat this song"><span data-icon="repeat"></span></button>
+      </div>
+      <div class="progress">
+        <span class="time now">0:00</span>
+        <div class="bar"><div class="fill"></div></div>
+        <span class="time total">0:00</span>
+      </div>
+      <div class="volume">
+        <button class="pbtn mute" title="Mute"><span data-icon="speaker"></span></button>
+        <div class="vol-bar"><div class="fill"></div></div>
+      </div>
+    </div>
+    <audio preload="metadata"></audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

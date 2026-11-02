@@ -1,0 +1,583 @@
+/* Dina's portfolio: olive, cream and pink, with crisp pixel edges everywhere */
+@font-face { font-family: "Pixelify"; src: url("fonts/PixelifySans-Bold.ttf"); }
+@font-face { font-family: "Jersey"; src: url("fonts/Jersey10-Regular.ttf"); }
+
+:root {
+  --olive: #C2C26B;      /* Dina's colour */
+  --olive-dark: #7A7A35;
+  --olive-deep: #4E4E22;
+  --cream: #FFF8E7;
+  --cream-dark: #F1E6C8;
+  --ink: #3B3324;
+  --pink: #F2A7B8;
+  --pink-soft: #FADCE3;
+  /* what the themes below change */
+  --bg: var(--olive);
+  --bg-dark: var(--olive-dark);
+  --deep: var(--olive-deep);
+  --accent: var(--pink);
+  --accent-soft: var(--pink-soft);
+  --mustard: #E8B04B;
+  --px: 4px;             /* one "pixel" of the borders */
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Jersey", sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  background-color: var(--bg);
+  /* faint pixel paw prints */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' shape-rendering='crispEdges'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.2'%3E%3Crect x='20' y='16' width='4' height='4'/%3E%3Crect x='28' y='12' width='4' height='4'/%3E%3Crect x='36' y='16' width='4' height='4'/%3E%3Crect x='24' y='24' width='12' height='8'/%3E%3Crect x='68' y='64' width='4' height='4'/%3E%3Crect x='76' y='60' width='4' height='4'/%3E%3Crect x='84' y='64' width='4' height='4'/%3E%3Crect x='72' y='72' width='12' height='8'/%3E%3C/g%3E%3C/svg%3E");
+  image-rendering: pixelated;
+}
+
+body.ready { transition: background-color 0.4s ease; } /* only fades once the page has loaded */
+
+/* Dina's brown paw as the mouse, squished while clicking */
+* { cursor: url("img/paw.png") 16 16, auto; }
+a, button, .bar, .cat, .nymeria, .mini { cursor: url("img/paw.png") 16 16, pointer; }
+html.pressing, html.pressing * { cursor: url("img/paw_press.png") 16 16, pointer; }
+
+/* The classic 8-bit box: a border with notched corners */
+.pixel-box {
+  background: var(--cream);
+  box-shadow:
+    0 calc(-1 * var(--px)) 0 0 var(--ink),
+    0 var(--px) 0 0 var(--ink),
+    calc(-1 * var(--px)) 0 0 0 var(--ink),
+    var(--px) 0 0 0 var(--ink),
+    0 calc(3 * var(--px)) 0 0 var(--bg-dark);
+}
+
+[data-sprite] svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- top ---------- */
+.hello { text-align: center; padding-top: 56px; }
+
+.bubble {
+  display: inline-block;
+  position: relative;
+  padding: 14px 40px 10px;
+}
+.bubble h1 {
+  margin: 0;
+  font-family: "Pixelify", sans-serif;
+  font-size: 64px;
+  color: var(--ink);
+  letter-spacing: 1px;
+}
+.bubble .tail {
+  position: absolute;
+  left: 44px;
+  bottom: -24px;
+  width: 24px;
+  height: 20px;
+  background: var(--cream);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.tagline {
+  margin: 30px 0 0;
+  font-size: 30px;
+  color: var(--deep);
+}
+
+/* ---------- the console menu ---------- */
+.menu {
+  position: relative;
+  width: 420px;
+  margin: 84px auto 0;
+  display: flex;
+  justify-content: center;
+}
+
+.bubbles {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  filter: drop-shadow(0 6px 0 var(--bg-dark));
+}
+
+.tab {
+  width: 124px;
+  height: 124px;
+  margin: 0 -10px;
+  border: none;
+  border-radius: 50%;
+  background: var(--cream);
+  display: grid;
+  place-items: center;
+  transition: transform 0.15s ease;
+}
+.tab > span {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.tab > span svg { width: 64px; height: 64px; }
+.tab:hover > span { transform: translateY(-3px); }
+.tab.active > span {
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 6px var(--accent-soft);
+  transform: scale(1.12);
+}
+
+.shoulder {
+  position: absolute;
+  bottom: -8px;
+  width: 56px;
+  height: 40px;
+  border: none;
+  background: var(--deep);
+  color: var(--cream);
+  font-family: "Pixelify", sans-serif;
+  font-size: 26px;
+  z-index: 0; /* tucked under the bubbles, but still clickable */
+  transition: transform 0.1s ease;
+}
+.shoulder.left { left: -14px; border-radius: 22px 6px 6px 22px; padding-right: 14px; }
+.shoulder.right { right: -14px; border-radius: 6px 22px 22px 6px; padding-left: 14px; }
+.shoulder:active { transform: translateY(3px); }
+
+/* Billie and Angel napping on the menu (Angel turned round to face Billie) */
+.menu .cat {
+  position: absolute;
+  top: -50px;
+  width: 120px;
+  height: 60px;
+  z-index: 2;
+}
+.menu .angel { left: 20px; transform: scaleX(-1); }
+.menu .billie { right: 20px; }
+
+/* Dina's own face in the About Me bubble */
+.tab .face img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  image-rendering: pixelated; /* exactly 2x the 32px face */
+  object-fit: cover;
+  box-shadow: 0 0 0 3px var(--ink);
+}
+
+.page-name { display: none;
+  text-align: center;
+  margin: 22px 0 0;
+  font-family: "Pixelify", sans-serif;
+  font-size: 26px;
+  color: var(--ink);
+}
+
+/* ---------- pages ---------- */
+main { max-width: 1000px; margin: 26px auto 0; padding: 0 24px; }
+
+.page { display: none; padding: 26px 34px 34px; }
+.page.active { display: block; }
+
+.page h2 {
+  margin: 0 0 20px;
+  font-family: "Pixelify", sans-serif;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.page h2 .heart { width: 28px; height: 28px; }
+
+.soon { color: var(--deep); }
+
+.game {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 28px;
+  padding: 20px 0;
+  border-top: var(--px) dashed var(--cream-dark);
+}
+.game:first-of-type { border-top: none; padding-top: 0; }
+
+.shot {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  box-shadow: 0 0 0 var(--px) var(--ink);
+}
+.shot.pixel { image-rendering: pixelated; }
+.shot.placeholder {
+  background: #BFE3F2;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 6px;
+  color: #5C8FA8;
+}
+.shot.placeholder span { width: 120px; height: 72px; }
+
+.info h3 {
+  margin: 0;
+  font-family: "Pixelify", sans-serif;
+  font-size: 34px;
+}
+.info p { margin: 10px 0 0; }
+.role { color: var(--deep); }
+
+.tags { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.tags li {
+  background: var(--accent-soft);
+  padding: 0 10px;
+  font-size: 20px;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.buttons { display: flex; gap: 16px; margin-top: 16px; }
+.btn {
+  display: inline-block;
+  padding: 6px 18px 4px;
+  font-family: "Pixelify", sans-serif;
+  font-size: 22px;
+  text-decoration: none;
+  color: var(--cream);
+  background: var(--deep);
+  box-shadow: 0 4px 0 0 var(--ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.btn.more { background: var(--accent); color: var(--ink); }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 0 var(--ink); }
+.btn:active { transform: translateY(3px) scale(0.97); box-shadow: 0 1px 0 0 var(--ink); }
+
+/* ---------- contact note ---------- */
+.contact {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 16px;
+  z-index: 10;
+}
+.contact a { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 22px; }
+.contact a:hover { color: var(--deep); }
+.contact .icon { width: 24px; height: 24px; }
+
+footer { text-align: center; padding: 40px 0 30px; color: var(--deep); font-size: 22px; }
+
+/* ---------- music player: a small box in the bottom-left corner ---------- */
+.player {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  width: 206px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 8px;
+  padding: 8px 12px 10px;
+  z-index: 20;
+}
+.song { display: flex; flex-direction: column; line-height: 1.05; min-width: 0; }
+.song-name { font-family: "Pixelify", sans-serif; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song small { font-size: 15px; color: var(--deep); }
+.player .fold { align-self: start; }
+.fold span { width: 14px; height: 8px; }
+
+.controls { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 4px; }
+.control-row { display: flex; justify-content: center; align-items: center; gap: 10px; }
+
+.pbtn {
+  position: relative;
+  border: none;
+  background: none;
+  padding: 2px;
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  transition: transform 0.08s ease, color 0.15s ease;
+}
+.pbtn span { width: 14px; height: 14px; display: block; }
+.pbtn span svg { width: 100%; height: 100%; }
+.pbtn:hover { color: var(--deep); transform: translateY(-2px); }
+.pbtn:active { transform: translateY(2px) scale(0.92); }
+.shuffle span, .repeat span, .mute span { width: 18px; }
+
+/* shuffle and repeat look faded until they're switched on (with a little dot, like Spotify) */
+.shuffle, .repeat { color: #A89F88; }
+.pbtn.on { color: var(--deep); }
+.pbtn.on::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  margin-left: -2px;
+  background: var(--deep);
+}
+
+/* the big play button: a dark pixel circle (an octagon with chunky corners) */
+.pbtn.play {
+  width: 30px;
+  height: 30px;
+  background: var(--deep);
+  color: var(--cream);
+  clip-path: polygon(6px 0, 24px 0, 24px 3px, 27px 3px, 27px 6px, 30px 6px, 30px 24px, 27px 24px, 27px 27px, 24px 27px, 24px 30px,
+                     6px 30px, 6px 27px, 3px 27px, 3px 24px, 0 24px, 0 6px, 3px 6px, 3px 3px, 6px 3px);
+}
+.pbtn.play:hover { color: var(--cream); background: var(--ink); }
+.pbtn.play span { width: 12px; height: 12px; }
+
+.progress { display: flex; align-items: center; gap: 8px; }
+.time { font-size: 15px; min-width: 28px; text-align: center; color: var(--deep); }
+.volume { display: flex; align-items: center; gap: 8px; margin-top: 2px; }
+.bar, .vol-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--cream-dark);
+  box-shadow: 0 0 0 3px var(--ink);
+  touch-action: none;
+}
+.fill { position: relative; height: 100%; width: 0; background: var(--accent); }
+.fill::after { /* the little square knob */
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: -4px;
+  width: 8px;
+  height: 14px;
+  background: var(--ink);
+}
+
+.vol-bar { flex: 0 0 70px; }
+
+/* folded: just the play button, with the little arrow to open it again */
+.player.folded { width: auto; display: flex; align-items: center; gap: 6px; padding: 6px 8px; }
+.player.folded .song,
+.player.folded .progress,
+.player.folded .volume,
+.player.folded .control-row .pbtn:not(.play) { display: none; }
+.player.folded .fold { order: 2; align-self: center; }
+
+/* the heart that floats up when a cat is clicked */
+.float-heart {
+  position: fixed;
+  width: 28px;
+  height: 24px;
+  margin: -30px 0 0 -14px;
+  pointer-events: none;
+  z-index: 50;
+  animation: float-up 0.9s ease-out forwards;
+}
+@keyframes float-up {
+  from { transform: translateY(0) scale(0.6); opacity: 1; }
+  to   { transform: translateY(-60px) scale(1.2); opacity: 0; }
+}
+
+/* ---------- About Me ---------- */
+.me { display: grid; grid-template-columns: 324px 1fr; gap: 30px; align-items: start; }
+.avatar { width: 324px; image-rendering: pixelated; /* exactly 3x the 108px art */ box-shadow: 0 0 0 var(--px) var(--ink); }
+.story p { margin: 0 0 14px; }
+.story .looking { color: var(--deep); }
+
+.cats-title { font-family: "Pixelify", sans-serif; font-size: 28px; margin: 26px 0 12px; }
+.cats { display: grid; grid-template-columns: repeat(2, 260px); gap: 28px; }
+.cat-card { margin: 0; }
+.cat-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; box-shadow: 0 0 0 var(--px) var(--ink); }
+.cat-card figcaption { margin-top: 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 19px; line-height: 1.15; }
+.cat-card .mini { width: 44px; height: 22px; }
+.cat-card img { cursor: url("img/paw.png") 16 16, zoom-in; transition: transform 0.12s ease; }
+.cat-card img:hover { transform: translateY(-3px); }
+
+/* ---------- Why I Changed Career Paths ---------- */
+.career { margin-top: 26px; padding-top: 22px; border-top: var(--px) dashed var(--cream-dark); }
+.career h3 { font-family: "Pixelify", sans-serif; font-size: 28px; margin: 0 0 12px; }
+.career p { margin: 0 0 14px; }
+.career .big-line { font-family: "Pixelify", sans-serif; font-size: 26px; color: var(--deep); margin: 20px 0; }
+
+/* ---------- "How I made it": a 2003-style window ---------- */
+.devlog {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  place-items: center;
+  background: rgba(59, 51, 36, 0.6);
+}
+.devlog.open { display: grid; }
+.window {
+  width: min(820px, 94vw);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  box-shadow: 0 0 0 var(--px) var(--ink), 0 calc(3 * var(--px)) 0 var(--px) rgba(0, 0, 0, 0.3);
+}
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px 6px 12px;
+  background: linear-gradient(90deg, #1F4FA8, #7FA6E8);
+  color: #fff;
+  font-family: "Pixelify", sans-serif;
+  font-size: 20px;
+}
+.title-icon { width: 18px; height: 20px; }
+.win-close {
+  margin-left: auto;
+  width: 28px;
+  height: 26px;
+  border: none;
+  background: #D9534F;
+  color: #fff;
+  font-family: "Pixelify", sans-serif;
+  font-size: 18px;
+  box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.3), inset 2px 2px 0 rgba(255, 255, 255, 0.4);
+}
+.win-body { overflow-y: auto; padding: 22px 30px 30px; }
+.win-body h2 { font-family: "Pixelify", sans-serif; font-size: 36px; margin: 0 0 6px; }
+
+.step {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 22px;
+  align-items: start;
+  padding: 20px 0;
+  border-bottom: var(--px) dashed var(--cream-dark);
+}
+.step:last-child { border-bottom: none; }
+.step.wide { display: block; }
+.step h3 { font-family: "Pixelify", sans-serif; font-size: 26px; margin: 0 0 6px; }
+.step p { margin: 0; }
+.step img.zoom { width: 100%; box-shadow: 0 0 0 3px var(--ink); cursor: url("img/paw.png") 16 16, zoom-in; }
+.step .icon-pic { width: 120px; justify-self: center; }
+
+.gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 14px; }
+.gallery img.zoom { aspect-ratio: 1; object-fit: cover; }
+
+.apps { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; }
+.apps figure { margin: 0; text-align: center; font-size: 18px; }
+.apps img { width: 56px; height: 56px; image-rendering: pixelated; display: block; margin: 0 auto 2px; }
+
+.bugs { margin: 10px 0 0; padding: 0; list-style: none; }
+.bugs li { padding-left: 30px; position: relative; margin-bottom: 4px; }
+.bugs li::before { content: "\2714"; position: absolute; left: 4px; color: #5E7F96; } /* a tick: fixed! (the Games blue) */
+
+/* clicking a cat photo opens it big */
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  place-items: center;
+  background: rgba(59, 51, 36, 0.75);
+}
+.viewer.open { display: grid; }
+.viewer figure { position: relative; margin: 0; padding: 12px 12px 6px; text-align: center; }
+.viewer img { display: block; max-width: 86vw; max-height: 78vh; box-shadow: 0 0 0 3px var(--ink); }
+.viewer figcaption { margin-top: 6px; font-size: 20px; }
+.viewer .close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--deep);
+  color: var(--cream);
+  font-family: "Pixelify", sans-serif;
+  font-size: 22px;
+  box-shadow: 0 0 0 3px var(--ink);
+}
+
+/* ---------- Skills: the RPG inventory ---------- */
+.intro { margin: 0 0 40px; color: var(--deep); }
+
+.inventory {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 16px;
+  background: var(--bg-dark);
+  box-shadow: 0 0 0 var(--px) var(--ink), 0 calc(2 * var(--px)) 0 var(--px) var(--ink);
+}
+/* the label tab sticking up from the top-left corner */
+.inv-label {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  padding: 6px 16px 2px;
+  background: var(--bg-dark);
+  color: var(--cream);
+  font-family: "Pixelify", sans-serif;
+  font-size: 22px;
+  box-shadow: 0 calc(-1 * var(--px)) 0 0 var(--ink), calc(-1 * var(--px)) 0 0 0 var(--ink), var(--px) 0 0 0 var(--ink);
+}
+
+.inv-grid { display: grid; grid-template-columns: repeat(5, 76px); gap: 12px; }
+.slot {
+  width: 76px;
+  height: 76px;
+  border: none;
+  padding: 0;
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 3px var(--ink), inset 0 -6px 0 0 rgba(0, 0, 0, 0.08);
+  display: grid;
+  place-items: center;
+  transition: transform 0.08s ease;
+}
+.slot span { width: 44px; height: 44px; }
+.slot:hover { transform: translateY(-2px); }
+.slot:active { transform: translateY(2px) scale(0.95); }
+.slot.picked { background: var(--cream); box-shadow: inset 0 0 0 3px var(--ink), 0 0 0 4px var(--pink); }
+
+/* the box underneath: the picked item's name and description */
+.inv-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: calc(5 * 76px + 4 * 12px);
+  min-height: 128px;
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: var(--cream);
+  box-shadow: inset 0 0 0 3px var(--ink);
+}
+.inv-icon { flex: 0 0 64px; height: 64px; }
+.inv-name { margin: 0; font-family: "Pixelify", sans-serif; font-size: 26px; }
+.inv-desc { margin: 4px 0 0; font-size: 20px; line-height: 1.2; }
+
+/* Nymeria (from Hey Jane!) naps on the game's picture */
+.shot-wrap { position: relative; }
+.shot-wrap .nymeria { position: absolute; top: -46px; right: 14px; width: 96px; height: 48px; }
+
+/* ---------- colour themes (?theme=pink / purple / pages) ---------- */
+body[data-theme="pink"]   { --accent: #CFAEC5; --accent-soft: #EEDFE9; }
+body[data-theme="purple"] { --accent: #9EA2F0; --accent-soft: #DDDEFB; }
+/* "pages": every page has its own colour, and it changes with L / R */
+body[data-theme="pages"][data-page="about"]  { --bg: #CFAEC5; --bg-dark: #9C7A92; --deep: #5E3F55; --accent: #CFAEC5; --accent-soft: #EEDFE9; }
+body[data-theme="pages"][data-page="games"]  { --bg: #8DACC2; --bg-dark: #5E7F96; --deep: #34495C; --accent: #CFAEC5; --accent-soft: #EEDFE9; } /* Dina's blue (Downloads\blue.jpg) */
+body[data-theme="pages"][data-page="skills"] { --bg: #9EA2F0; --bg-dark: #6C6FC2; --deep: #3E4090; --accent: #9EA2F0; --accent-soft: #DDDEFB; }
+
+/* ---------- phones ---------- */
+@media (max-width: 760px) {
+  .contact { position: static; flex-direction: row; justify-content: center; margin: 16px auto 0; width: fit-content; }
+  .bubble h1 { font-size: 44px; }
+  .game, .me { grid-template-columns: 1fr; }
+  .cats { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .step { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+  .menu { transform: scale(0.85); }
+  .player { left: 12px; bottom: 12px; }
+  .inv-grid { grid-template-columns: repeat(5, 52px); gap: 8px; }
+  .slot { width: 52px; height: 52px; }
+  .slot span { width: 30px; height: 30px; }
+  .inv-info { width: calc(5 * 52px + 4 * 8px); }
+  footer { padding-bottom: 130px; } /* so the player doesn't cover the footer on phones */
+}

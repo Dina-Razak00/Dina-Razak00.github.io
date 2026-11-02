@@ -567,17 +567,51 @@ body[data-theme="pages"][data-page="skills"] { --bg: #9EA2F0; --bg-dark: #6C6FC2
 
 /* ---------- phones ---------- */
 @media (max-width: 760px) {
-  .contact { position: static; flex-direction: row; justify-content: center; margin: 16px auto 0; width: fit-content; }
+  /* contact: a row at the top that wraps onto two lines */
+  .contact { position: static; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 6px 16px;
+             margin: 16px auto 0; width: fit-content; max-width: calc(100% - 32px); padding: 8px 14px; }
+  .contact a { font-size: 20px; gap: 6px; }
+  .contact .icon { width: 20px; height: 20px; }
+
+  .hello { padding-top: 36px; }
+  .bubble { padding: 10px 26px 6px; }
   .bubble h1 { font-size: 44px; }
+  .tagline { font-size: 24px; padding: 0 16px; }
+
+  /* the menu, smaller so L and R fit on the screen */
+  .menu { width: 300px; margin-top: 70px; }
+  .tab { width: 88px; height: 88px; margin: 0 -7px; }
+  .tab > span { width: 54px; height: 54px; }
+  .tab > span svg { width: 46px; height: 46px; }
+  .tab .face img { width: 46px; height: 46px; }
+  .shoulder { width: 46px; height: 32px; font-size: 20px; bottom: -6px; }
+  .shoulder.left { left: -12px; padding-right: 10px; }
+  .shoulder.right { right: -12px; padding-left: 10px; }
+  .menu .cat { width: 84px; height: 42px; top: -36px; }
+  .menu .angel { left: 14px; }
+  .menu .billie { right: 14px; }
+
+  main { padding: 0 12px; }
+  .page { padding: 20px 16px 26px; }
+  .page h2 { font-size: 34px; }
+
   .game, .me { grid-template-columns: 1fr; }
+  .avatar { width: 100%; max-width: 324px; justify-self: center; }
   .cats { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .shot-wrap .nymeria { width: 64px; height: 32px; top: -31px; right: 8px; }
+  .buttons { flex-wrap: wrap; gap: 12px; }
+  .btn { white-space: nowrap; }
+
   .step { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: repeat(3, 1fr); }
-  .menu { transform: scale(0.85); }
+  .win-body { padding: 16px 16px 22px; }
+
   .player { left: 12px; bottom: 12px; }
-  .inv-grid { grid-template-columns: repeat(5, 52px); gap: 8px; }
-  .slot { width: 52px; height: 52px; }
-  .slot span { width: 30px; height: 30px; }
-  .inv-info { width: calc(5 * 52px + 4 * 8px); }
+  .inventory { padding: 12px; }
+  .inv-grid { grid-template-columns: repeat(5, 48px); gap: 8px; }
+  .slot { width: 48px; height: 48px; }
+  .slot span { width: 28px; height: 28px; }
+  .inv-info { width: calc(5 * 48px + 4 * 8px); padding: 12px 14px; gap: 12px; }
+  .inv-icon { flex-basis: 44px; height: 44px; }
   footer { padding-bottom: 130px; } /* so the player doesn't cover the footer on phones */
 }
